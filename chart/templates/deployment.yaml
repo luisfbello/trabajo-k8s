@@ -17,19 +17,27 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.targetPort }}
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
           env:
             - name: MENSAJE
               value: "{{ .Values.env.mensaje }}"
             - name: PORT
-              value: "{{ .Values.service.targetPort }}"
+              value: "3000"
           livenessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: 10
+              port: 3000
+            initialDelaySeconds: 40
+            periodSeconds: 15
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /health
-              port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: 5
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 5
