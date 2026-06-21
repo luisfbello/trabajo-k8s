@@ -1,0 +1,14 @@
+﻿replicaCount: 1
+
+image:
+  repository: luisbello/microservicio-k8s
+  tag: "1.0.3"
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+env:
+  mensaje: "Hola desde mi microservicio en Kubernetes (valores por defecto)"
