@@ -2,7 +2,7 @@
 
 image:
   repository: luisbello/microservicio-k8s
-  tag: "1.0.3"
+  tag: "1.1.1"
   pullPolicy: IfNotPresent
 
 service:
